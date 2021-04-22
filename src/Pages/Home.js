@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Card } from '../components/Card';
 import { Search } from '../components/Search';
 import { GithubContext } from '../context/github/githubContext';
+import { Loader } from '../Ui/Loader';
 
 export const Home = () => {
   const { loading, users } = useContext(GithubContext);
@@ -10,7 +11,7 @@ export const Home = () => {
       <Search />
       <div className={'row'}>
         {loading ? (
-          <p className={'text-center'}>Загрузка...</p>
+          <Loader />
         ) : (
           users.map((user) => {
             return (

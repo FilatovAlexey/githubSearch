@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Repos } from '../components/Repos';
 import { GithubContext } from '../context/github/githubContext';
+import { Loader } from '../Ui/Loader';
 
 export const Profile = ({ match }) => {
   const { getUser, getRepos, loading, user, repos } = useContext(GithubContext);
@@ -11,10 +12,10 @@ export const Profile = ({ match }) => {
     getUser(urlName);
     getRepos(urlName);
   }, []);
-  if (loading) {
-    return <p className="text-center">Загрузка</p>;
-  }
 
+  if (loading) {
+    return <Loader />;
+  }
   const {
     name,
     company,
@@ -35,11 +36,13 @@ export const Profile = ({ match }) => {
       <Link to="/" className="btn btn-link">
         На главную
       </Link>
+
       <div className="card mb-4">
         <div className="card-body">
           <div className="row">
             <div className="col-sm-3 text-center">
               <img src={avatar_url} alt={name} style={{ width: '150px' }}></img>
+
               <h1>{name}</h1>
               {location && <p>Местоположение: {location}</p>}
             </div>
