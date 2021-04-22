@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Repos } from '../components/Repos';
 import { GithubContext } from '../context/github/githubContext';
 
 export const Profile = ({ match }) => {
@@ -84,6 +85,7 @@ export const Profile = ({ match }) => {
           </div>
         </div>
       </div>
+      <Repos repos={repos} />
     </>
   );
 };
